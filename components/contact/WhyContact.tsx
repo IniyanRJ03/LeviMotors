@@ -4,6 +4,44 @@ import React from 'react';
 export default function WhyContact() {
   return (
     <section style={{ background: '#f7f2f3', width: '100vw', position: 'relative', left: '50%', right: '50%', marginLeft: '-50vw', marginRight: '-50vw', maxWidth: '100vw', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 48, flexWrap: 'wrap', padding: '48px 0', border: 'none', boxShadow: 'none' }}>
+      {/* Responsive Styles */}
+      <style>{`
+        @media (max-width: 900px) {
+          section > div[style*='max-width: 1200px'] {
+            flex-direction: column !important;
+            gap: 24px !important;
+            padding: 0 8px !important;
+          }
+          section h2 {
+            text-align: center !important;
+            font-size: 1.4rem !important;
+            margin-bottom: 18px !important;
+          }
+          section ul {
+            margin-top: 18px !important;
+          }
+          section li {
+            margin-bottom: 18px !important;
+          }
+          section img[alt='Contact Levi Motors'] {
+            width: 90vw !important;
+            max-width: 340px !important;
+            height: auto !important;
+            border-radius: 14px !important;
+          }
+        }
+        @media (max-width: 600px) {
+          section {
+            padding: 24px 0 32px 0 !important;
+          }
+          section h2 {
+            font-size: 1.1rem !important;
+          }
+          section li div {
+            font-size: 0.98rem !important;
+          }
+        }
+      `}</style>
       <div style={{ width: '100%', maxWidth: 1200, margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 48, flexWrap: 'wrap', padding: '0 16px' }}>
         {/* Left: Image */}
         <div style={{ flex: 1, minWidth: 320, display: 'flex', justifyContent: 'center' }}>

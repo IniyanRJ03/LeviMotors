@@ -11,6 +11,32 @@ export default function Promise() {
           At Levi Motors, we promise to treat every customer with honesty, respect, and care. We stand by the quality of our work, offer transparent pricing, and always put your safety and satisfaction first. Whether you need a routine service or a major repair, you can trust us to deliver reliable results and friendly service—every time.
         </p>
       </div>
+      {/* Responsive Styles */}
+      <style>{`
+        @media (max-width: 900px) {
+          section > div[style*='max-width: 800px'] {
+            padding: 0 8px !important;
+          }
+          section h2 {
+            font-size: 1.4rem !important;
+            margin-bottom: 18px !important;
+          }
+          section p {
+            font-size: 1rem !important;
+          }
+        }
+        @media (max-width: 600px) {
+          section {
+            padding: 24px 0 32px 0 !important;
+          }
+          section h2 {
+            font-size: 1.1rem !important;
+          }
+          section p {
+            font-size: 0.98rem !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }

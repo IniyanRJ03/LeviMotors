@@ -4,6 +4,42 @@ import React from 'react';
 export default function ContactForm() {
   return (
     <section style={{ background: '#f7e6ea', width: '100vw', position: 'relative', left: '50%', right: '50%', marginLeft: '-50vw', marginRight: '-50vw', maxWidth: '100vw', padding: '48px 0', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+      {/* Responsive Styles */}
+      <style>{`
+        @media (max-width: 900px) {
+          section > div[style*='max-width: 900px'] {
+            flex-direction: column !important;
+            gap: 24px !important;
+            padding: 0 8px !important;
+          }
+          section h2 {
+            text-align: center !important;
+            font-size: 1.4rem !important;
+            margin-bottom: 18px !important;
+          }
+          section p {
+            font-size: 1rem !important;
+          }
+          section img[alt='Contact Levi Motors'] {
+            width: 90vw !important;
+            max-width: 340px !important;
+            height: auto !important;
+            border-radius: 14px !important;
+            min-height: 180px !important;
+          }
+        }
+        @media (max-width: 600px) {
+          section {
+            padding: 24px 0 32px 0 !important;
+          }
+          section h2 {
+            font-size: 1.1rem !important;
+          }
+          section p, section label, section input, section textarea, section button {
+            font-size: 0.98rem !important;
+          }
+        }
+      `}</style>
       <div style={{ display: 'flex', gap: 40, justifyContent: 'center', alignItems: 'stretch', width: '100%', maxWidth: 900, flexWrap: 'wrap' }}>
         {/* Image Side */}
         <div style={{ flex: 1, minWidth: 320, maxWidth: 420, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>

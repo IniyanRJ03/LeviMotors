@@ -108,16 +108,23 @@ export default function AboutHero() {
       <style>{`
         @media (max-width: 900px) {
           section > div[style*='max-width: 1440px'] {
-            flex-direction: column;
-            gap: 32px !important;
+            flex-direction: column !important;
+            gap: 24px !important;
             padding: 32px 12px !important;
           }
           section h1 {
-            font-size: 2rem !important;
+            font-size: 1.4rem !important;
             text-align: center !important;
           }
           section p {
             text-align: center !important;
+            font-size: 1rem !important;
+          }
+          section img[alt='About Levi Motors'] {
+            width: 90vw !important;
+            max-width: 320px !important;
+            height: auto !important;
+            border-radius: 14px !important;
           }
         }
       `}</style>

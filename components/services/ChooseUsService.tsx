@@ -81,12 +81,37 @@ export default function ChooseUsService() {
       <style>{`
         @media (max-width: 900px) {
           section > div[style*='max-width: 1200px'] {
-            flex-direction: column;
-            gap: 32px !important;
-            padding: 0 12px !important;
+            flex-direction: column !important;
+            gap: 24px !important;
+            padding: 0 8px !important;
           }
           section h2 {
             text-align: center !important;
+            font-size: 1.4rem !important;
+            margin-bottom: 18px !important;
+          }
+          section ul {
+            margin-top: 18px !important;
+          }
+          section li {
+            margin-bottom: 18px !important;
+          }
+          section img[alt='Car Servicing'] {
+            width: 90vw !important;
+            max-width: 340px !important;
+            height: auto !important;
+            border-radius: 14px !important;
+          }
+        }
+        @media (max-width: 600px) {
+          section {
+            padding: 24px 0 32px 0 !important;
+          }
+          section h2 {
+            font-size: 1.1rem !important;
+          }
+          section li div {
+            font-size: 0.98rem !important;
           }
         }
       `}</style>

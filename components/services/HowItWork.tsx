@@ -38,6 +38,21 @@ export default function HowItWork() {
         .how-icon {
           margin-bottom: 18px;
         }
+        @media (max-width: 800px) {
+          .how-grid {
+            grid-template-columns: 1fr !important;
+            gap: 18px !important;
+          }
+          section {
+            padding: 28px 0 36px 0 !important;
+          }
+          h2 {
+            font-size: 1.3rem !important;
+          }
+          div[style*='font-size: 1.1rem'] {
+            font-size: 0.98rem !important;
+          }
+        }
       `}</style>
       <div style={{ textAlign: 'center', marginBottom: 16 }}>
         <h2 style={{ fontSize: '2.4rem', fontWeight: 800, color: '#660914', marginBottom: 8 }}>How It Works</h2>
@@ -45,7 +60,7 @@ export default function HowItWork() {
           Simple, transparent, and customer-focused from start to finish
         </div>
       </div>
-      <div style={{
+      <div className="how-grid" style={{
         display: 'grid',
         gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
         gap: '32px',

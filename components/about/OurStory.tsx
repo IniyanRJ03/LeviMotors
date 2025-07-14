@@ -3,6 +3,41 @@ import React from 'react';
 export default function OurStory() {
   return (
     <section style={{ width: '100%', padding: '56px 0 80px 0', background: '#f7f2f3' }}>
+      {/* Responsive Styles */}
+      <style>{`
+        @media (max-width: 900px) {
+          section > div[style*='max-width: 1100px'] {
+            flex-direction: column !important;
+            gap: 24px !important;
+            padding: 0 8px !important;
+          }
+          section h2 {
+            text-align: center !important;
+            font-size: 1.4rem !important;
+            margin-bottom: 18px !important;
+          }
+          section p {
+            font-size: 1rem !important;
+          }
+          section img[alt='Our Story - Car Repairs'] {
+            width: 90vw !important;
+            max-width: 340px !important;
+            height: auto !important;
+            border-radius: 14px !important;
+          }
+        }
+        @media (max-width: 600px) {
+          section {
+            padding: 24px 0 32px 0 !important;
+          }
+          section h2 {
+            font-size: 1.1rem !important;
+          }
+          section p {
+            font-size: 0.98rem !important;
+          }
+        }
+      `}</style>
       <div style={{
         maxWidth: 1100,
         margin: '0 auto',
