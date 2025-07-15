@@ -92,9 +92,24 @@ export default function Header() {
         <div className="header-main" style={{ background: 'linear-gradient(90deg, #fff 0%, #e2cfd3 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '12px 0', boxShadow: '0 2px 16px rgba(0,0,0,0.07)' }}>
           <div className="header-main-inner" style={{ width: '100%', maxWidth: 1440, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 48px' }}>
             {/* Left: Logo */}
-            <div style={{ color: '#6a1b2a', fontWeight: 700, fontSize: '2rem', fontFamily: 'sans-serif', letterSpacing: '2px' }}>
-              LEVI <span style={{ color: '#a03c5a', fontWeight: 400 }}>Motors</span>
-              <div style={{ fontSize: '0.7rem', color: '#222', fontWeight: 400, letterSpacing: '1px' }}>ALL CAR REPAIRS</div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+              <img
+                src="/logo1.png"
+                alt="Levi Motors Logo"
+                style={{
+                  width: 68,
+                  height: 68,
+                  objectFit: 'contain',
+                  filter: 'drop-shadow(0 2px 12px rgba(102,9,20,0.13))',
+                  background: 'linear-gradient(120deg, #fff 0%, #e2cfd3 100%)',
+                  borderRadius: 18,
+                  padding: 4,
+                }}
+              />
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+                <span style={{ color: '#6a1b2a', fontWeight: 700, fontSize: '2rem', fontFamily: 'sans-serif', letterSpacing: '2px', lineHeight: 1 }}>LEVI <span style={{ color: '#a03c5a', fontWeight: 400 }}>Motors</span></span>
+                <div style={{ fontSize: '0.7rem', color: '#222', fontWeight: 400, letterSpacing: '1px', lineHeight: 1 }}>ALL CAR REPAIRS</div>
+              </div>
             </div>
             {/* Desktop Navigation */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '48px' }}>
