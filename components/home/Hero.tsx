@@ -150,7 +150,7 @@ export default function Hero() {
           >
             Reliable, affordable car repairs and servicing. Qualified diagnostics technician. 56 London Road, Northfleet, Gravesend, DA11 9LF.
           </motion.p>
-          <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap' }}>
+          <motion.div variants={fadeUp} style={{ display: 'flex', gap: 24, flexWrap: 'wrap' }}>
             <a
               href="tel:07788256481"
               style={{
@@ -192,7 +192,7 @@ export default function Hero() {
             >
               Get a Free Quote
             </a>
-          </div>
+          </motion.div>
         </div>
         {/* Right: Image */}
         <motion.div

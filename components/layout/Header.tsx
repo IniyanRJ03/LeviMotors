@@ -3,10 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 
-const phone = '01234 567890';
-const email = 'levimotors@example.com';
-const address = '123 Main Street, Randomtown, RT12 3AB';
-
 const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/services', label: 'Services' },
@@ -60,15 +56,6 @@ export default function Header() {
             .mobile-hamburger {
               margin-left: auto !important;
             }
-            .topbar-flex {
-              flex-direction: column !important;
-              gap: 2px !important;
-              padding: 0 10px !important;
-              font-size: 0.95rem !important;
-            }
-            .topbar-flex span {
-              margin-bottom: 2px !important;
-            }
           }
           @media (max-width: 600px) {
             .header-main-inner > div:first-child {
@@ -78,10 +65,6 @@ export default function Header() {
               font-size: 0.5rem !important;
             }
             .header-main, .header-main-inner {
-              padding: 0 4px !important;
-            }
-            .topbar-flex {
-              font-size: 0.85rem !important;
               padding: 0 4px !important;
             }
           }
@@ -105,14 +88,6 @@ export default function Header() {
             border-radius: 2px;
           }
         `}</style>
-        {/* Top Bar */}
-        <div style={{ background: 'linear-gradient(90deg, #a03c5a 0%, #e2cfd3 100%)', color: '#fff', fontSize: '15px', padding: '4px 0', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-          <div className="topbar-flex" style={{ width: '100%', maxWidth: 1440, display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0 48px' }}>
-            <span>Phone: <a href={`tel:${phone.replace(/\s/g, '')}`} style={{ color: '#fff', textDecoration: 'underline' }}>{phone}</a></span>
-            <span>Email: <a href={`mailto:${email}`} style={{ color: '#fff', textDecoration: 'underline' }}>{email}</a></span>
-            <span>{address}</span>
-          </div>
-        </div>
         {/* Main Header */}
         <div className="header-main" style={{ background: 'linear-gradient(90deg, #fff 0%, #e2cfd3 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '12px 0', boxShadow: '0 2px 16px rgba(0,0,0,0.07)' }}>
           <div className="header-main-inner" style={{ width: '100%', maxWidth: 1440, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 48px' }}>
@@ -121,7 +96,7 @@ export default function Header() {
               LEVI <span style={{ color: '#a03c5a', fontWeight: 400 }}>Motors</span>
               <div style={{ fontSize: '0.7rem', color: '#222', fontWeight: 400, letterSpacing: '1px' }}>ALL CAR REPAIRS</div>
             </div>
-            {/* Desktop Navigation + Call Now */}
+            {/* Desktop Navigation */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '48px' }}>
               <nav className="desktop-nav" style={{ display: 'flex', alignItems: 'center', gap: '48px' }}>
                 {navLinks.map(link => {
@@ -137,12 +112,6 @@ export default function Header() {
                   );
                 })}
               </nav>
-              <a href={`tel:${phone.replace(/\s/g, '')}`} className="desktop-call" style={{ display: 'flex', alignItems: 'center', background: '#6a1b2a', color: '#fff', border: 'none', borderRadius: '16px', padding: '8px 22px', fontWeight: 500, textDecoration: 'none', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
-                <span style={{ marginRight: '8px', display: 'flex', alignItems: 'center' }}>
-                  <svg width="18" height="18" fill="none" stroke="#fff" strokeWidth="2" viewBox="0 0 24 24"><path d="M22 16.92V21a2 2 0 0 1-2.18 2A19.72 19.72 0 0 1 3 5.18 2 2 0 0 1 5 3h4.09a2 2 0 0 1 2 1.72c.13 1.13.37 2.23.72 3.28a2 2 0 0 1-.45 2.11l-1.27 1.27a16 16 0 0 0 6.29 6.29l1.27-1.27a2 2 0 0 1 2.11-.45c1.05.35 2.15.59 3.28.72A2 2 0 0 1 22 16.92z"/></svg>
-                </span>
-                Call Now
-              </a>
               {/* Hamburger Icon (Mobile) */}
               <button
                 className="mobile-hamburger"
@@ -176,44 +145,93 @@ export default function Header() {
       </header>
       {/* Mobile Menu - outside header, covers below header only */}
       {menuOpen && (
-        <div
-          style={{
-            position: 'fixed',
-            top: 108, // 32px top bar + 76px header-main (approx)
-            left: 0,
-            width: '100vw',
-            height: 'calc(100vh - 108px)',
-            background: '#fff',
-            zIndex: 110,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: 36,
-            transition: 'all 0.3s',
-          }}
-        >
-          {navLinks.map(link => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={() => setMenuOpen(false)}
-              style={{ fontSize: 28, fontWeight: 600, color: '#6a1b2a', textDecoration: 'none', margin: 0, padding: 0 }}
-            >
-              {link.label}
-            </Link>
-          ))}
-          <a
-            href={`tel:${phone.replace(/\s/g, '')}`}
-            style={{ display: 'flex', alignItems: 'center', background: '#6a1b2a', color: '#fff', border: 'none', borderRadius: 16, padding: '14px 36px', fontWeight: 500, textDecoration: 'none', fontSize: 22, boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}
+        <>
+          <div
+            style={{
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              width: '100vw',
+              height: '100vh',
+              background: 'rgba(30, 8, 20, 0.45)',
+              zIndex: 109,
+              transition: 'background 0.3s',
+            }}
             onClick={() => setMenuOpen(false)}
+          />
+          <div
+            className="mobile-menu-card"
+            style={{
+              position: 'fixed',
+              top: 0,
+              left: '50%',
+              transform: 'translateX(-50%)',
+              width: '92vw',
+              maxWidth: 400,
+              background: '#fff',
+              borderRadius: 24,
+              boxShadow: '0 8px 32px rgba(102,9,20,0.18)',
+              zIndex: 120,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              padding: '36px 0 32px 0',
+              animation: 'menu-slide-fade-in 0.38s cubic-bezier(0.4,0,0.2,1)',
+            }}
           >
-            <span style={{ marginRight: 12, display: 'flex', alignItems: 'center' }}>
-              <svg width="22" height="22" fill="none" stroke="#fff" strokeWidth="2" viewBox="0 0 24 24"><path d="M22 16.92V21a2 2 0 0 1-2.18 2A19.72 19.72 0 0 1 3 5.18 2 2 0 0 1 5 3h4.09a2 2 0 0 1 2 1.72c.13 1.13.37 2.23.72 3.28a2 2 0 0 1-.45 2.11l-1.27 1.27a16 16 0 0 0 6.29 6.29l1.27-1.27a2 2 0 0 1 2.11-.45c1.05.35 2.15.59 3.28.72A2 2 0 0 1 22 16.92z"/></svg>
-            </span>
-            Call Now
-          </a>
-        </div>
+            <button
+              aria-label="Close menu"
+              onClick={() => setMenuOpen(false)}
+              style={{
+                position: 'absolute',
+                top: 18,
+                right: 24,
+                background: 'none',
+                border: 'none',
+                padding: 8,
+                cursor: 'pointer',
+                zIndex: 121,
+              }}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="#6a1b2a" style={{ width: 32, height: 32 }}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+            <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 32, marginTop: 24 }}>
+              {navLinks.map(link => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMenuOpen(false)}
+                  style={{ fontSize: 28, fontWeight: 700, color: '#6a1b2a', textDecoration: 'none', letterSpacing: 1, padding: '8px 0', borderRadius: 12, width: '80%', textAlign: 'center', transition: 'background 0.2s, color 0.2s' }}
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+          <style>{`
+            @keyframes menu-slide-fade-in {
+              0% { opacity: 0; transform: translate(-50%, -40px); }
+              100% { opacity: 1; transform: translate(-50%, 0); }
+            }
+            .mobile-menu-card a:hover {
+              background: #f7e6ea;
+              color: #a03c5a;
+            }
+            @media (max-width: 500px) {
+              .mobile-menu-card {
+                max-width: 98vw !important;
+                border-radius: 0 0 24px 24px !important;
+                padding: 24px 0 24px 0 !important;
+              }
+              .mobile-menu-card a {
+                font-size: 1.2rem !important;
+                padding: 12px 0 !important;
+              }
+            }
+          `}</style>
+        </>
       )}
     </>
   );

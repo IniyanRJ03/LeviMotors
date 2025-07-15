@@ -111,13 +111,14 @@ export default function ServiceHero() {
             flex-direction: column !important;
             gap: 24px !important;
             padding: 32px 12px !important;
+            align-items: flex-start !important;
           }
           section h1 {
             font-size: 1.4rem !important;
-            text-align: center !important;
+            text-align: left !important;
           }
           section p {
-            text-align: center !important;
+            text-align: left !important;
             font-size: 1rem !important;
           }
           section img[alt='Our Services'] {
@@ -125,6 +126,8 @@ export default function ServiceHero() {
             max-width: 320px !important;
             height: auto !important;
             border-radius: 14px !important;
+            display: block !important;
+            margin-left: 0 !important;
           }
         }
       `}</style>

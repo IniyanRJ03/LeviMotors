@@ -7,8 +7,38 @@ const address = 'Batiicaloa Srilanka';
 
 export default function Footer() {
   return (
-    <footer style={{ background: '#f7f2f3', color: '#660914', padding: '40px 0 0 0', fontFamily: 'inherit', fontSize: '1rem', borderTop: '1px solid #e5dada' }}>
-      <div style={{ maxWidth: 1440, margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '48px', padding: '0 48px' }}>
+    <footer style={{ background: '#f7f2f3', color: '#660914', padding: '40px 0 0 0', fontFamily: 'inherit', fontSize: '1rem', borderTop: '1px solid #e5dada', position: 'relative' }}>
+      <style>{`
+        @media (max-width: 700px) {
+          .footer-main {
+            flex-direction: column !important;
+            gap: 24px !important;
+            padding: 0 12px !important;
+          }
+          .footer-main > div {
+            min-width: 0 !important;
+            width: 100% !important;
+            max-width: 100vw !important;
+          }
+          .footer-bottom {
+            flex-direction: column !important;
+            gap: 12px !important;
+            padding: 18px 12px 18px 12px !important;
+            font-size: 0.95rem !important;
+          }
+        }
+        @media (max-width: 500px) {
+          .footer-main {
+            gap: 16px !important;
+            padding: 0 4px !important;
+          }
+          .footer-bottom {
+            padding: 12px 4px 12px 4px !important;
+            font-size: 0.9rem !important;
+          }
+        }
+      `}</style>
+      <div className="footer-main" style={{ maxWidth: 1440, margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '48px', padding: '0 48px' }}>
         {/* Logo & About */}
         <div style={{ flex: '1 1 260px', minWidth: 220 }}>
           <div style={{ color: '#660914', fontWeight: 700, fontSize: '2rem', fontFamily: 'sans-serif', letterSpacing: '2px', marginBottom: 8 }}>
@@ -70,7 +100,7 @@ export default function Footer() {
         </div>
       </div>
       {/* Bottom Bar */}
-      <div style={{ borderTop: '1px solid #e5dada', marginTop: 40, padding: '18px 48px 18px 48px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.98rem', color: '#7c232c', maxWidth: 1440, marginLeft: 'auto', marginRight: 'auto' }}>
+      <div className="footer-bottom" style={{ borderTop: '1px solid #e5dada', marginTop: 40, padding: '18px 48px 18px 48px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.98rem', color: '#7c232c', maxWidth: 1440, marginLeft: 'auto', marginRight: 'auto' }}>
         <span>© 2025 LEVI Motors. All rights reserved. <span style={{ fontSize: '0.95em', color: '#660914', marginLeft: 12 }}>Website Developed by 0B</span></span>
         <div style={{ display: 'flex', gap: 18 }}>
           <a href="#" style={{ color: '#7c232c', textDecoration: 'none' }}>Privacy Policy</a>
