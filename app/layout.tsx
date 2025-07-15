@@ -28,7 +28,15 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}
+        style={{
+          minHeight: '100vh',
+          display: 'flex',
+          flexDirection: 'column',
+          fontFamily: 'Geist, Inter, Segoe UI, sans-serif',
+          WebkitFontSmoothing: 'antialiased',
+          MozOsxFontSmoothing: 'grayscale',
+          fontWeight: 400,
+        }}
       >
         <Header />
         <main style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>

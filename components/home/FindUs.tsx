@@ -32,8 +32,8 @@ export default function FindUs() {
   return (
     <section style={{ width: '100%', padding: '56px 0 80px 0', background: 'linear-gradient(180deg, #f7f2f3 60%, #fff 100%)' }}>
       <div style={{ textAlign: 'center', marginBottom: 12 }}>
-        <h2 style={{ fontSize: '2.2rem', fontWeight: 800, color: '#6a1b2a', marginBottom: 8 }}>Find Us</h2>
-        <div style={{ color: '#a03c5a', fontSize: '1.1rem', marginBottom: 32 }}>
+        <h2 style={{ fontSize: '2.2rem', fontWeight: 800, color: '#6a1b2a', marginBottom: 8, fontFamily: 'Geist, Inter, Segoe UI, sans-serif', letterSpacing: '-1px' }}>Find Us</h2>
+        <div style={{ color: '#a03c5a', fontSize: '1.1rem', marginBottom: 32, fontFamily: 'Geist, Inter, Segoe UI, sans-serif', fontWeight: 500, letterSpacing: '0.01em' }}>
           Visit our location or get in touch with us for your transportation needs
         </div>
       </div>

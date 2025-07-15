@@ -38,10 +38,36 @@ export default function HowItWork() {
         .how-icon {
           margin-bottom: 18px;
         }
+        .how-grid-box {
+          max-width: 1440px;
+          margin: 0 auto;
+          padding: 0 48px;
+          box-sizing: border-box;
+          width: 100%;
+        }
+        .how-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 32px;
+          justify-content: center;
+        }
+        @media (max-width: 1100px) {
+          .how-grid {
+            grid-template-columns: 1fr 1fr 1fr !important;
+          }
+        }
+        @media (max-width: 1000px) {
+          .how-grid-box {
+            padding: 0 18px !important;
+          }
+        }
         @media (max-width: 800px) {
           .how-grid {
             grid-template-columns: 1fr !important;
             gap: 18px !important;
+          }
+          .how-grid-box {
+            padding: 0 8px !important;
           }
           section {
             padding: 28px 0 36px 0 !important;
@@ -60,21 +86,16 @@ export default function HowItWork() {
           Simple, transparent, and customer-focused from start to finish
         </div>
       </div>
-      <div className="how-grid" style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-        gap: '32px',
-        justifyContent: 'center',
-        maxWidth: 1100,
-        margin: '0 auto',
-      }}>
-        {steps.map((step, idx) => (
-          <div key={step.title} className="how-card">
-            <div className="how-icon">{step.icon}</div>
-            <div style={{ fontWeight: 800, fontSize: '1.25rem', marginBottom: 8, color: '#660914' }}>{step.title}</div>
-            <div style={{ color: '#7c232c', fontSize: '1rem', fontWeight: 400 }}>{step.description}</div>
-          </div>
-        ))}
+      <div className="how-grid-box">
+        <div className="how-grid">
+          {steps.map((step, idx) => (
+            <div key={step.title} className="how-card">
+              <div className="how-icon">{step.icon}</div>
+              <div style={{ fontWeight: 800, fontSize: '1.25rem', marginBottom: 8, color: '#660914' }}>{step.title}</div>
+              <div style={{ color: '#7c232c', fontSize: '1rem', fontWeight: 400 }}>{step.description}</div>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

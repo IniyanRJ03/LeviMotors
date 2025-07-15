@@ -6,12 +6,12 @@ import Book from "@/components/home/Book"
 
 export default function ContactPage() {
     return(
-      <>
-        <ContactHero/>
+    <>
+    <ContactHero/>    
         <WhyContact/>    
         <ContactForm/>
         <FindUs/>
         <Book/>
-      </>
+    </>
     )
 }

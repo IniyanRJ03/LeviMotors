@@ -55,10 +55,36 @@ export default function Workshop() {
         .workshop-img {
           border-radius: 18px 18px 0 0;
         }
+        .workshop-grid-box {
+          max-width: 1440px;
+          margin: 0 auto;
+          padding: 0 48px;
+          box-sizing: border-box;
+          width: 100%;
+        }
+        .workshop-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 32px;
+          justify-content: center;
+        }
+        @media (max-width: 1100px) {
+          .workshop-grid {
+            grid-template-columns: 1fr 1fr 1fr !important;
+          }
+        }
+        @media (max-width: 1000px) {
+          .workshop-grid-box {
+            padding: 0 18px !important;
+          }
+        }
         @media (max-width: 800px) {
           .workshop-grid {
             grid-template-columns: 1fr !important;
             gap: 18px !important;
+          }
+          .workshop-grid-box {
+            padding: 0 8px !important;
           }
           section {
             padding: 28px 0 36px 0 !important;
@@ -72,40 +98,35 @@ export default function Workshop() {
         }
       `}</style>
       <div style={{ textAlign: 'center', marginBottom: 16 }}>
-        <h2 style={{ fontSize: '2.4rem', fontWeight: 800, color: '#660914', marginBottom: 8 }}>Our Workshop & Capabilities</h2>
-        <div style={{ color: '#7c232c', fontSize: '1.1rem', marginBottom: 32 }}>
+        <h2 style={{ fontSize: '2.4rem', fontWeight: 800, color: '#660914', marginBottom: 8, fontFamily: 'Geist, Inter, Segoe UI, sans-serif', letterSpacing: '-1px' }}>Our Workshop & Capabilities</h2>
+        <div style={{ color: '#7c232c', fontSize: '1.1rem', marginBottom: 32, fontFamily: 'Geist, Inter, Segoe UI, sans-serif', fontWeight: 500, letterSpacing: '0.01em' }}>
           Fully equipped garage for all makes and models. Modern diagnostics, MOT bay, and experienced technicians.
         </div>
       </div>
-      <div className="workshop-grid" style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-        gap: '32px',
-        justifyContent: 'center',
-        maxWidth: 1100,
-        margin: '0 auto',
-      }}>
-        {workshops.map((item, idx) => (
-          <div key={item.title} className="workshop-card">
-            <img
-              src={item.image}
-              alt={item.title}
-              className="workshop-img"
-              style={{ width: '100%', height: 160, objectFit: 'cover', display: 'block' }}
-            />
-            <div style={{ padding: '28px 22px 22px 22px', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
-              <div style={{ fontWeight: 700, fontSize: '1.25rem', marginBottom: 8, color: '#660914' }}>{item.title}</div>
-              <div style={{ color: '#7c232c', fontSize: '1rem', fontWeight: 400, marginBottom: 16 }}>{item.description}</div>
-              <ul style={{ textAlign: 'left', color: '#222', fontSize: '1rem', fontWeight: 400, paddingLeft: 18, margin: 0 }}>
-                {item.bullets.map((bullet, i) => (
-                  <li key={i} style={{ marginBottom: 6, listStyle: 'none', position: 'relative', paddingLeft: 18 }}>
-                    <span style={{ position: 'absolute', left: 0, color: '#660914', fontWeight: 700 }}>✔</span> {bullet}
-                  </li>
-                ))}
-              </ul>
+      <div className="workshop-grid-box">
+        <div className="workshop-grid">
+          {workshops.map((item, idx) => (
+            <div key={item.title} className="workshop-card">
+              <img
+                src={item.image}
+                alt={item.title}
+                className="workshop-img"
+                style={{ width: '100%', height: 160, objectFit: 'cover', display: 'block' }}
+              />
+              <div style={{ padding: '28px 22px 22px 22px', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
+                <div style={{ fontWeight: 700, fontSize: '1.25rem', marginBottom: 8, color: '#660914' }}>{item.title}</div>
+                <div style={{ color: '#7c232c', fontSize: '1rem', fontWeight: 400, marginBottom: 16 }}>{item.description}</div>
+                <ul style={{ textAlign: 'left', color: '#222', fontSize: '1rem', fontWeight: 400, paddingLeft: 18, margin: 0 }}>
+                  {item.bullets.map((bullet, i) => (
+                    <li key={i} style={{ marginBottom: 6, listStyle: 'none', position: 'relative', paddingLeft: 18 }}>
+                      <span style={{ position: 'absolute', left: 0, color: '#660914', fontWeight: 700 }}>✔</span> {bullet}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );

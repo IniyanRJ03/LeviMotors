@@ -36,7 +36,34 @@ const reviews = [
   },
 ];
 
+const DESKTOP_REVIEWS_PER_SLIDE = 3;
+
+function getReviewsPerSlide() {
+  if (typeof window !== 'undefined' && window.innerWidth <= 900) {
+    return 1;
+  }
+  return DESKTOP_REVIEWS_PER_SLIDE;
+}
+
+type Review = { text: string; name: string; role: string };
+function getSlides(reviews: Review[], reviewsPerSlide: number): Review[][] {
+  const slides: Review[][] = [];
+  for (let i = 0; i < reviews.length; i += reviewsPerSlide) {
+    slides.push(reviews.slice(i, i + reviewsPerSlide));
+  }
+  return slides;
+}
+
 export default function Reviews() {
+  const [reviewsPerSlide, setReviewsPerSlide] = React.useState(getReviewsPerSlide());
+  React.useEffect(() => {
+    function handleResize() {
+      setReviewsPerSlide(getReviewsPerSlide());
+    }
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+  const slides = getSlides(reviews, reviewsPerSlide);
   const [current, setCurrent] = useState(0);
   const [animating, setAnimating] = useState(false);
   const [direction, setDirection] = useState<'left' | 'right'>('right');
@@ -58,19 +85,32 @@ export default function Reviews() {
     }, 350);
   };
   const goTo = (idx: number) => handleChange(idx, idx > current ? 'right' : 'left');
-  const handlePrev = () => handleChange((current - 1 + reviews.length) % reviews.length, 'left');
-  const handleNext = () => handleChange((current + 1) % reviews.length, 'right');
+  const handlePrev = () => handleChange((current - 1 + slides.length) % slides.length, 'left');
+  const handleNext = () => handleChange((current + 1) % slides.length, 'right');
 
   return (
     <section style={{ width: '100%', padding: '56px 0 80px 0', background: '#f7e6ea' }}>
       <style>{`
+        .review-grid-box {
+          max-width: 1440px;
+          margin: 0 auto;
+          padding: 0 48px;
+          box-sizing: border-box;
+          width: 100%;
+        }
         .review-carousel {
           display: flex;
           align-items: center;
           justify-content: center;
           gap: 0;
-          max-width: 600px;
-          margin: 0 auto;
+          width: 100%;
+        }
+        .review-cards {
+          display: grid;
+          grid-template-columns: repeat(var(--reviews-per-slide, 3), 1fr);
+          gap: 0;
+          width: 100%;
+          transition: transform 0.35s cubic-bezier(.4,1,.4,1), opacity 0.35s;
         }
         .review-card {
           background: #fff;
@@ -80,106 +120,77 @@ export default function Reviews() {
           transition: box-shadow 0.3s, transform 0.3s, opacity 0.3s;
           display: flex;
           flex-direction: column;
-          width: 400px;
-          height: 220px;
-          min-width: 340px;
-          max-width: 480px;
-          min-height: 180px;
-          max-height: 260px;
+          min-width: 0;
+          min-height: 160px;
+          max-height: 340px;
           position: relative;
-          padding: 32px 28px 28px 28px;
+          padding: 28px 22px 22px 22px;
           opacity: 1;
           z-index: 1;
+          margin: 0 12px;
         }
-        .review-card.review-anim.animating.left {
-          animation: review-exit-left 0.35s forwards;
+        .review-cards.animating.left {
+          transform: translateX(-60px);
+          opacity: 0;
         }
-        .review-card.review-anim.animating.right {
-          animation: review-exit-right 0.35s forwards;
+        .review-cards.animating.right {
+          transform: translateX(60px);
+          opacity: 0;
         }
-        .review-card.review-anim.left:not(.animating) {
-          animation: review-enter-left 0.35s;
-        }
-        .review-card.review-anim.right:not(.animating) {
-          animation: review-enter-right 0.35s;
-        }
-        @keyframes review-exit-left {
-          0% { opacity: 1; transform: translateX(0); }
-          100% { opacity: 0; transform: translateX(-60px); }
-        }
-        @keyframes review-exit-right {
-          0% { opacity: 1; transform: translateX(0); }
-          100% { opacity: 0; transform: translateX(60px); }
-        }
-        @keyframes review-enter-left {
-          0% { opacity: 0; transform: translateX(60px); }
-          100% { opacity: 1; transform: translateX(0); }
-        }
-        @keyframes review-enter-right {
-          0% { opacity: 0; transform: translateX(-60px); }
-          100% { opacity: 1; transform: translateX(0); }
-        }
-        .review-arrow {
-          background: #fff;
-          border: 1.5px solid #660914;
-          color: #660914;
-          border-radius: 50%;
-          width: 38px;
-          height: 38px;
+        .review-slider {
+          width: 100%;
+          max-width: 400px;
+          margin: 32px auto 0 auto;
           display: flex;
           align-items: center;
-          justify-content: center;
-          font-size: 2rem;
-          cursor: pointer;
-          margin: 0 18px;
-          transition: background 0.2s, color 0.2s;
+          gap: 12px;
         }
-        .review-arrow:hover {
-          background: #660914;
-          color: #fff;
+        .review-slider input[type='range'] {
+          width: 100%;
+          accent-color: #660914;
+          height: 4px;
+          border-radius: 2px;
+          background: #e2cfd3;
+        }
+        .review-slider .slider-label {
+          font-size: 1rem;
+          color: #660914;
+          font-weight: 600;
+          min-width: 32px;
+          text-align: center;
         }
         .review-dots {
           display: flex;
           justify-content: center;
-          gap: 8px;
-          margin-top: 18px;
+          gap: 14px;
+          margin: 32px 0 0 0;
         }
         .review-dot {
-          width: 10px;
-          height: 10px;
+          width: 14px;
+          height: 14px;
           border-radius: 50%;
-          background: #ccc;
-          transition: background 0.2s;
+          background: #e2cfd3;
+          transition: background 0.2s, box-shadow 0.2s;
           cursor: pointer;
+          border: 2px solid #660914;
         }
         .review-dot.active {
           background: #660914;
+          box-shadow: 0 2px 8px rgba(102,9,20,0.13);
         }
-        @media (max-width: 700px) {
-          .review-carousel {
-            flex-direction: column !important;
-            gap: 12px !important;
-            max-width: 98vw !important;
+        @media (max-width: 900px) {
+          .review-grid-box {
+            padding: 0 8px !important;
           }
-          .review-card {
-            width: 98vw !important;
-            min-width: 0 !important;
-            max-width: 100vw !important;
-            height: auto !important;
-            min-height: 120px !important;
-            padding: 18px 8px 18px 8px !important;
-          }
-          h2 {
-            font-size: 1.3rem !important;
-          }
-          div[style*='font-size: 1.1rem'] {
-            font-size: 0.98rem !important;
+          .review-cards {
+            grid-template-columns: 1fr !important;
+            gap: 0 !important;
           }
         }
       `}</style>
       <div style={{ textAlign: 'center', marginBottom: 12 }}>
-        <h2 style={{ fontSize: '2.4rem', fontWeight: 800, color: '#660914', marginBottom: 8 }}>What Our Customers Say</h2>
-        <div style={{ color: '#7c232c', fontSize: '1.1rem', marginBottom: 18 }}>
+        <h2 style={{ fontSize: '2.4rem', fontWeight: 800, color: '#660914', marginBottom: 8, fontFamily: 'Geist, Inter, Segoe UI, sans-serif', letterSpacing: '-1px' }}>What Our Customers Say</h2>
+        <div style={{ color: '#7c232c', fontSize: '1.1rem', marginBottom: 18, fontFamily: 'Geist, Inter, Segoe UI, sans-serif', fontWeight: 500, letterSpacing: '0.01em' }}>
           Don’t just take our word for it – hear from our satisfied customers
         </div>
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', margin: '24px 0 32px 0' }}>
@@ -216,28 +227,39 @@ export default function Reviews() {
           }
         }
       `}</style>
-      <div className="review-carousel">
-        <span className="review-arrow" onClick={handlePrev} aria-label="Previous Review">
-          <MdChevronLeft />
-        </span>
-        <div className={`review-card review-anim${animating ? ' animating ' + direction : ''}`}>
-          <div style={{ fontSize: '2.2rem', color: '#660914', opacity: 0.5, marginBottom: 12, lineHeight: 1 }}>&ldquo;</div>
-          <div style={{ marginBottom: 18, color: '#222' }}>{reviews[current].text}</div>
-          <div style={{ fontWeight: 700, marginTop: 'auto', color: '#660914' }}>{reviews[current].name}</div>
-          <div style={{ fontSize: '0.98rem', color: '#7c232c', fontWeight: 400 }}>{reviews[current].role}</div>
+      <div className="review-grid-box">
+        <div className="review-carousel">
+          <span className="review-arrow" onClick={handlePrev} aria-label="Previous Review">
+            <MdChevronLeft />
+          </span>
+          <div
+            className={`review-cards${animating ? ' animating ' + direction : ''}`}
+            style={{
+              '--reviews-per-slide': reviewsPerSlide,
+            } as React.CSSProperties}
+          >
+            {slides[current].map((review: Review, idx: number) => (
+              <div key={review.text + idx} className="review-card">
+                <div style={{ fontSize: '2.2rem', color: '#660914', opacity: 0.5, marginBottom: 12, lineHeight: 1 }}>&ldquo;</div>
+                <div style={{ marginBottom: 18, color: '#222' }}>{review.text}</div>
+                <div style={{ fontWeight: 700, marginTop: 'auto', color: '#660914' }}>{review.name}</div>
+                <div style={{ fontSize: '0.98rem', color: '#7c232c', fontWeight: 400 }}>{review.role}</div>
+              </div>
+            ))}
+          </div>
+          <span className="review-arrow" onClick={handleNext} aria-label="Next Review">
+            <MdChevronRight />
+          </span>
         </div>
-        <span className="review-arrow" onClick={handleNext} aria-label="Next Review">
-          <MdChevronRight />
-        </span>
-      </div>
-      <div className="review-dots">
-        {reviews.map((_, idx) => (
-          <span
-            key={idx}
-            className={`review-dot${idx === current ? ' active' : ''}`}
-            onClick={() => goTo(idx)}
-          />
-        ))}
+        <div className="review-dots">
+          {slides.map((_, idx) => (
+            <span
+              key={idx}
+              className={`review-dot${idx === current ? ' active' : ''}`}
+              onClick={() => goTo(idx)}
+            />
+          ))}
+        </div>
       </div>
     </section>
   );

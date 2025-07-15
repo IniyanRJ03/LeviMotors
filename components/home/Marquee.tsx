@@ -26,8 +26,8 @@ export default function Marquee() {
           fontWeight: 800,
           fontSize: '2.1rem',
           color: '#111',
-          letterSpacing: '0.5px',
-          fontFamily: 'inherit',
+          letterSpacing: '-1px',
+          fontFamily: 'Geist, Inter, Segoe UI, sans-serif',
           animation: 'marquee-scroll 18s linear infinite',
           willChange: 'transform',
         }}>

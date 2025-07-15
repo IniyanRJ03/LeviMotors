@@ -139,8 +139,8 @@ export default function Services() {
         }
       `}</style>
       <div style={{ textAlign: 'center', marginBottom: 16 }}>
-        <h2 style={{ fontSize: '2.6rem', fontWeight: 800, color: '#660914', marginBottom: 8 }}>Our Services</h2>
-        <div style={{ color: '#7c232c', fontSize: '1.1rem', marginBottom: 32 }}>
+        <h2 style={{ fontSize: '2.6rem', fontWeight: 800, color: '#660914', marginBottom: 8, fontFamily: 'Geist, Inter, Segoe UI, sans-serif', letterSpacing: '-1px' }}>Our Services</h2>
+        <div style={{ color: '#7c232c', fontSize: '1.1rem', marginBottom: 32, fontFamily: 'Geist, Inter, Segoe UI, sans-serif', fontWeight: 500, letterSpacing: '0.01em' }}>
           Professional and reliable transportation services tailored to your needs
         </div>
       </div>

@@ -3,10 +3,10 @@ import React from 'react';
 export default function Book() {
   return (
     <section style={{ width: '100%', padding: '64px 0 80px 0', background: 'linear-gradient(90deg, #a03c5a 0%, #e2cfd3 100%)', textAlign: 'center' }}>
-      <h2 style={{ fontSize: '2.2rem', fontWeight: 800, color: '#fff', marginBottom: 16 }}>
+      <h2 style={{ fontSize: '2.2rem', fontWeight: 800, color: '#fff', marginBottom: 16, fontFamily: 'Geist, Inter, Segoe UI, sans-serif', letterSpacing: '-1px' }}>
         Ready to Book Your Service?
       </h2>
-      <div style={{ color: '#f7e3ea', fontSize: '1.1rem', marginBottom: 32 }}>
+      <div style={{ color: '#f7e3ea', fontSize: '1.1rem', marginBottom: 32, fontFamily: 'Geist, Inter, Segoe UI, sans-serif', fontWeight: 500, letterSpacing: '0.01em' }}>
         Get a free quote or book your service online. We offer competitive prices and quality workmanship.
       </div>
       <style>{`
